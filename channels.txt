@@ -5,6 +5,9 @@ PeakTradingResearch
 AlgoTradingWithKevinDavey
 ScottWelshStrategies
 ImanTrading
+Darwinexchange
+tradingwithrayner
+ukspreadbetting
 
 [Spiritual]
 Sadhguru
@@ -13,3 +16,15 @@ maleekaismyguardianangel
 ClarkKegley
 EckhartTolle
 HouseOfHighbrations
+BuddhismInEnglish
+CaptainSinbad
+Einzelgänger
+siebrendevos
+
+[Minimalism]
+mattdavella
+SamuraiMatcha
+SenaShimotsuma
+
+[Golf]
+SagutoGolf
