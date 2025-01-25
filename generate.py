@@ -1,10 +1,10 @@
 import feedparser
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime, timedelta
+from datetime import datetime
 import time
-import json
 from typing import Dict
+from collections import defaultdict
 
 def get_channel_id(channel_input: str) -> Dict:
     channel_input = channel_input.strip()
@@ -56,7 +56,7 @@ def get_relative_time(date):
         return f"{weeks} week{'s' if weeks > 1 else ''} ago"
     return date.strftime('%b %d, %Y')
 
-def generate_html(videos):
+def generate_html(videos_by_group):
     html = '''
     <!DOCTYPE html>
     <html>
@@ -71,6 +71,36 @@ def generate_html(videos):
                 background: #121212; 
                 font-family: 'Inter', -apple-system, sans-serif;
                 color: #E1E1E1;
+            }
+            .filters {
+                position: sticky;
+                top: 0;
+                background: #121212;
+                padding: 16px;
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+                z-index: 10;
+                border-bottom: 1px solid #2a2a2a;
+            }
+            .filter-btn {
+                background: #2a2a2a;
+                border: none;
+                color: #E1E1E1;
+                padding: 8px 16px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-family: inherit;
+                transition: all 0.2s;
+            }
+            .filter-btn.active {
+                background: #8B5CF6;
+            }
+            .filter-btn:hover {
+                background: #3a3a3a;
+            }
+            .filter-btn.active:hover {
+                background: #7c4ce7;
             }
             .grid { 
                 display: grid; 
@@ -117,13 +147,38 @@ def generate_html(videos):
                 color: inherit; 
                 text-decoration: none; 
             }
+            .group {
+                display: none;
+            }
+            .group.active {
+                display: block;
+            }
         </style>
     </head>
     <body>
-        <div class="grid">
+        <div class="filters">
+            <button class="filter-btn active" onclick="showGroup('all')">All</button>
     '''
     
-    for video in sorted(videos, key=lambda x: x['date'], reverse=True):
+    for group in videos_by_group.keys():
+        html += f'''
+            <button class="filter-btn" onclick="showGroup('{group}')">{group}</button>'''
+    
+    html += '''
+        </div>
+    '''
+
+    # All videos section
+    html += '''
+        <div class="group active" id="all">
+            <div class="grid">
+    '''
+    
+    all_videos = []
+    for group_videos in videos_by_group.values():
+        all_videos.extend(group_videos)
+    
+    for video in sorted(all_videos, key=lambda x: x['date'], reverse=True):
         html += f'''
             <div class="video">
                 <a href="{video['link']}" target="_blank">
@@ -138,7 +193,51 @@ def generate_html(videos):
         '''
     
     html += '''
+            </div>
         </div>
+    '''
+
+    # Individual group sections
+    for group, group_videos in videos_by_group.items():
+        html += f'''
+        <div class="group" id="{group}">
+            <div class="grid">
+        '''
+        
+        for video in sorted(group_videos, key=lambda x: x['date'], reverse=True):
+            html += f'''
+                <div class="video">
+                    <a href="{video['link']}" target="_blank">
+                        <img src="{video['thumbnail']}" alt="{video['title']}">
+                        <div class="video-info">
+                            <h3>{video['title']}</h3>
+                            <div class="channel">{video['channel']}</div>
+                            <div class="date">{get_relative_time(video['date'])}</div>
+                        </div>
+                    </a>
+                </div>
+            '''
+        
+        html += '''
+            </div>
+        </div>
+        '''
+
+    html += '''
+        <script>
+        function showGroup(groupId) {
+            // Hide all groups
+            document.querySelectorAll('.group').forEach(el => el.classList.remove('active'));
+            // Show selected group
+            document.getElementById(groupId).classList.add('active');
+            // Update button states
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            // Find and activate the clicked button
+            Array.from(document.querySelectorAll('.filter-btn')).find(
+                btn => btn.onclick.toString().includes(groupId)
+            ).classList.add('active');
+        }
+        </script>
     </body>
     </html>
     '''
@@ -147,23 +246,37 @@ def generate_html(videos):
         f.write(html)
 
 def main():
-    videos = []
-    with open('channels.txt') as f:
-        channels = [line.strip() for line in f if line.strip()]
+    videos_by_group = defaultdict(list)
+    current_group = None
     
-    for channel in channels:
-        time.sleep(1)  # Avoid rate limiting
-        channel_info = get_channel_id(channel)
-        if not channel_info:
-            print(f"Failed to get channel info for: {channel}")
-            continue
+    with open('channels.txt') as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+                
+            if line.startswith('[') and line.endswith(']'):
+                current_group = line[1:-1]
+                continue
+                
+            if current_group is None:
+                print(f"Warning: Channel {line} has no group, skipping")
+                continue
+                
+            channel = line
+            time.sleep(1)  # Avoid rate limiting
             
-        print(f"Processing: {channel_info['title']}")
-        feed = feedparser.parse(channel_info['rss'])
-        
-        for entry in feed.entries:
-            date = datetime.strptime(entry.published[:19], '%Y-%m-%dT%H:%M:%S')
-                videos.append({
+            channel_info = get_channel_id(channel)
+            if not channel_info:
+                print(f"Failed to get channel info for: {channel}")
+                continue
+                
+            print(f"Processing: {channel_info['title']}")
+            feed = feedparser.parse(channel_info['rss'])
+            
+            for entry in feed.entries:
+                date = datetime.strptime(entry.published[:19], '%Y-%m-%dT%H:%M:%S')
+                videos_by_group[current_group].append({
                     'title': entry.title,
                     'link': entry.link,
                     'date': date,
@@ -171,7 +284,7 @@ def main():
                     'thumbnail': f"https://i.ytimg.com/vi/{entry.yt_videoid}/mqdefault.jpg"
                 })
     
-    generate_html(videos)
+    generate_html(videos_by_group)
 
 if __name__ == "__main__":
     main()
