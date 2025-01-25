@@ -161,11 +161,8 @@ def main():
         print(f"Processing: {channel_info['title']}")
         feed = feedparser.parse(channel_info['rss'])
         
-        two_weeks_ago = datetime.now() - timedelta(days=14)
-        
         for entry in feed.entries:
             date = datetime.strptime(entry.published[:19], '%Y-%m-%dT%H:%M:%S')
-            if date > two_weeks_ago:
                 videos.append({
                     'title': entry.title,
                     'link': entry.link,
