@@ -74,11 +74,13 @@ def generate_html(videos):
             }
             .grid { 
                 display: grid; 
-                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-                gap: 24px; 
-                padding: 32px;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 16px; 
+                padding: 16px;
                 max-width: 1600px;
                 margin: 0 auto;
+                width: 100%;
+                box-sizing: border-box;
             }
             .video {
                 background: #1E1E1E;
