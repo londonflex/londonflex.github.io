@@ -13,6 +13,36 @@
                 font-family: 'Inter', -apple-system, sans-serif;
                 color: #E1E1E1;
             }
+            .filters {
+                position: sticky;
+                top: 0;
+                background: #121212;
+                padding: 16px;
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+                z-index: 10;
+                border-bottom: 1px solid #2a2a2a;
+            }
+            .filter-btn {
+                background: #2a2a2a;
+                border: none;
+                color: #E1E1E1;
+                padding: 8px 16px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-family: inherit;
+                transition: all 0.2s;
+            }
+            .filter-btn.active {
+                background: #8B5CF6;
+            }
+            .filter-btn:hover {
+                background: #3a3a3a;
+            }
+            .filter-btn.active:hover {
+                background: #7c4ce7;
+            }
             .grid { 
                 display: grid; 
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -58,529 +88,40 @@
                 color: inherit; 
                 text-decoration: none; 
             }
+            .group {
+                display: none;
+            }
+            .group.active {
+                display: block;
+            }
         </style>
     </head>
     <body>
-        <div class="grid">
+        <div class="filters">
+            <button class="filter-btn active" onclick="showGroup('all')">All</button>
     
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=i0VYNiYO1zk" target="_blank">
-                    <img src="https://i.ytimg.com/vi/i0VYNiYO1zk/mqdefault.jpg" alt="Guys I wrote a book🥹❤️ Join me on a 30 day challenge starting 1st Feb ❤️✨🫶🏽🥵🧲">
-                    <div class="video-info">
-                        <h3>Guys I wrote a book🥹❤️ Join me on a 30 day challenge starting 1st Feb ❤️✨🫶🏽🥵🧲</h3>
-                        <div class="channel">House Of Highbrations</div>
-                        <div class="date">3 hours ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=2psO_lXILJ8" target="_blank">
-                    <img src="https://i.ytimg.com/vi/2psO_lXILJ8/mqdefault.jpg" alt="Become a Limb of Shiva">
-                    <div class="video-info">
-                        <h3>Become a Limb of Shiva</h3>
-                        <div class="channel">Sadhguru</div>
-                        <div class="date">7 hours ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=esPRe3ESgGA" target="_blank">
-                    <img src="https://i.ytimg.com/vi/esPRe3ESgGA/mqdefault.jpg" alt="Ganga’s Special Properties, Sanatan Board & Kumbh Mela - TV Channels Interview Sadhguru at Prayagraj">
-                    <div class="video-info">
-                        <h3>Ganga’s Special Properties, Sanatan Board & Kumbh Mela - TV Channels Interview Sadhguru at Prayagraj</h3>
-                        <div class="channel">Sadhguru</div>
-                        <div class="date">10 hours ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=y7SJM6zxboc" target="_blank">
-                    <img src="https://i.ytimg.com/vi/y7SJM6zxboc/mqdefault.jpg" alt="Turn Inward And Know The Joy Of Seeing Life As A Play">
-                    <div class="video-info">
-                        <h3>Turn Inward And Know The Joy Of Seeing Life As A Play</h3>
-                        <div class="channel">Sadhguru</div>
-                        <div class="date">14 hours ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=fPy4DheOTZw" target="_blank">
-                    <img src="https://i.ytimg.com/vi/fPy4DheOTZw/mqdefault.jpg" alt="Places of Worship Act: A Crime Against The Nation">
-                    <div class="video-info">
-                        <h3>Places of Worship Act: A Crime Against The Nation</h3>
-                        <div class="channel">Sadhguru</div>
-                        <div class="date">Yesterday</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=hLtkBYqDst0" target="_blank">
-                    <img src="https://i.ytimg.com/vi/hLtkBYqDst0/mqdefault.jpg" alt="Changing YOUR LIFE is EASIER than you think...">
-                    <div class="video-info">
-                        <h3>Changing YOUR LIFE is EASIER than you think...</h3>
-                        <div class="channel">Clark Kegley</div>
-                        <div class="date">Yesterday</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=pvtEKpeYvq8" target="_blank">
-                    <img src="https://i.ytimg.com/vi/pvtEKpeYvq8/mqdefault.jpg" alt="Stop Worrying About What Others Think">
-                    <div class="video-info">
-                        <h3>Stop Worrying About What Others Think</h3>
-                        <div class="channel">Sadhguru</div>
-                        <div class="date">Yesterday</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=Fn4tVHWMWm4" target="_blank">
-                    <img src="https://i.ytimg.com/vi/Fn4tVHWMWm4/mqdefault.jpg" alt="Mahakumbh #Sadhguru #Poem">
-                    <div class="video-info">
-                        <h3>Mahakumbh #Sadhguru #Poem</h3>
-                        <div class="channel">Sadhguru</div>
-                        <div class="date">Yesterday</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=EpiJ6IZ2BOY" target="_blank">
-                    <img src="https://i.ytimg.com/vi/EpiJ6IZ2BOY/mqdefault.jpg" alt="You 2.0 Live Q&A">
-                    <div class="video-info">
-                        <h3>You 2.0 Live Q&A</h3>
-                        <div class="channel">Quazi Johir</div>
-                        <div class="date">2 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=hYHx9pXp1FQ" target="_blank">
-                    <img src="https://i.ytimg.com/vi/hYHx9pXp1FQ/mqdefault.jpg" alt="Awakening to a New Life, with Eckhart Tolle">
-                    <div class="video-info">
-                        <h3>Awakening to a New Life, with Eckhart Tolle</h3>
-                        <div class="channel">Eckhart Tolle</div>
-                        <div class="date">2 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=KeloyARekx0" target="_blank">
-                    <img src="https://i.ytimg.com/vi/KeloyARekx0/mqdefault.jpg" alt="Remembering Vijji on the day she attained Mahasamadhi 28 years ago">
-                    <div class="video-info">
-                        <h3>Remembering Vijji on the day she attained Mahasamadhi 28 years ago</h3>
-                        <div class="channel">Sadhguru</div>
-                        <div class="date">2 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=_fDWnfkNOEI" target="_blank">
-                    <img src="https://i.ytimg.com/vi/_fDWnfkNOEI/mqdefault.jpg" alt="The Truth About Hardcore Spirituality">
-                    <div class="video-info">
-                        <h3>The Truth About Hardcore Spirituality</h3>
-                        <div class="channel">Sadhguru</div>
-                        <div class="date">2 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=4r6fnF3TjdE" target="_blank">
-                    <img src="https://i.ytimg.com/vi/4r6fnF3TjdE/mqdefault.jpg" alt="Awakening to a New Life, with Eckhart Tolle">
-                    <div class="video-info">
-                        <h3>Awakening to a New Life, with Eckhart Tolle</h3>
-                        <div class="channel">Eckhart Tolle</div>
-                        <div class="date">3 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=W6ETW84v-Kg" target="_blank">
-                    <img src="https://i.ytimg.com/vi/W6ETW84v-Kg/mqdefault.jpg" alt="The Power of “Aum Namah Shivaya” | Sadhguru">
-                    <div class="video-info">
-                        <h3>The Power of “Aum Namah Shivaya” | Sadhguru</h3>
-                        <div class="channel">Sadhguru</div>
-                        <div class="date">3 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=QeUOB169cXc" target="_blank">
-                    <img src="https://i.ytimg.com/vi/QeUOB169cXc/mqdefault.jpg" alt="The Overwhelming Intensity Of Samyama">
-                    <div class="video-info">
-                        <h3>The Overwhelming Intensity Of Samyama</h3>
-                        <div class="channel">Sadhguru</div>
-                        <div class="date">3 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=V30JRc7jvBg" target="_blank">
-                    <img src="https://i.ytimg.com/vi/V30JRc7jvBg/mqdefault.jpg" alt="200 IQ Man: "God exists on this plane of reality"">
-                    <div class="video-info">
-                        <h3>200 IQ Man: "God exists on this plane of reality"</h3>
-                        <div class="channel">Quazi Johir</div>
-                        <div class="date">4 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=Wvbqm0BmmYI" target="_blank">
-                    <img src="https://i.ytimg.com/vi/Wvbqm0BmmYI/mqdefault.jpg" alt="Why You are FAILING AT Trading - At What You Can Do About it!">
-                    <div class="video-info">
-                        <h3>Why You are FAILING AT Trading - At What You Can Do About it!</h3>
-                        <div class="channel">Algo Trading With Kevin Davey</div>
-                        <div class="date">4 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=Paw-d8DKtxw" target="_blank">
-                    <img src="https://i.ytimg.com/vi/Paw-d8DKtxw/mqdefault.jpg" alt="The Real India at Mahakumbh!">
-                    <div class="video-info">
-                        <h3>The Real India at Mahakumbh!</h3>
-                        <div class="channel">Sadhguru</div>
-                        <div class="date">4 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=Dnkz0hBzKCo" target="_blank">
-                    <img src="https://i.ytimg.com/vi/Dnkz0hBzKCo/mqdefault.jpg" alt="Mahashivratri 2025: Reserve Your Seats">
-                    <div class="video-info">
-                        <h3>Mahashivratri 2025: Reserve Your Seats</h3>
-                        <div class="channel">Sadhguru</div>
-                        <div class="date">4 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=4ARNbUGIpXM" target="_blank">
-                    <img src="https://i.ytimg.com/vi/4ARNbUGIpXM/mqdefault.jpg" alt="How I QUIT Alcohol after 10-years HEAVY boozin’ (Easy Method + 7 Tips)">
-                    <div class="video-info">
-                        <h3>How I QUIT Alcohol after 10-years HEAVY boozin’ (Easy Method + 7 Tips)</h3>
-                        <div class="channel">Clark Kegley</div>
-                        <div class="date">5 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=OaH2jLArulk" target="_blank">
-                    <img src="https://i.ytimg.com/vi/OaH2jLArulk/mqdefault.jpg" alt="Eckhart Tolle on the Realization of Being">
-                    <div class="video-info">
-                        <h3>Eckhart Tolle on the Realization of Being</h3>
-                        <div class="channel">Eckhart Tolle</div>
-                        <div class="date">5 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=ybkFGx-LMx0" target="_blank">
-                    <img src="https://i.ytimg.com/vi/ybkFGx-LMx0/mqdefault.jpg" alt="No Clickbait; Just Trading Advice That WORKS (for ALL levels)">
-                    <div class="video-info">
-                        <h3>No Clickbait; Just Trading Advice That WORKS (for ALL levels)</h3>
-                        <div class="channel">ImanTrading</div>
-                        <div class="date">5 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=rn81GzlzTWc" target="_blank">
-                    <img src="https://i.ytimg.com/vi/rn81GzlzTWc/mqdefault.jpg" alt="Mahakumbh - A Flood Of Devotion And Piety">
-                    <div class="video-info">
-                        <h3>Mahakumbh - A Flood Of Devotion And Piety</h3>
-                        <div class="channel">Sadhguru</div>
-                        <div class="date">5 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=GUJk6SkQzGM" target="_blank">
-                    <img src="https://i.ytimg.com/vi/GUJk6SkQzGM/mqdefault.jpg" alt="Navigating Market Drawdowns: Safeguard Your Investments">
-                    <div class="video-info">
-                        <h3>Navigating Market Drawdowns: Safeguard Your Investments</h3>
-                        <div class="channel">Algo Trading With Kevin Davey</div>
-                        <div class="date">5 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=Tjdila-_Z0w" target="_blank">
-                    <img src="https://i.ytimg.com/vi/Tjdila-_Z0w/mqdefault.jpg" alt="Allow Sadhguru’s Grace Into Your Life">
-                    <div class="video-info">
-                        <h3>Allow Sadhguru’s Grace Into Your Life</h3>
-                        <div class="channel">Sadhguru</div>
-                        <div class="date">5 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=t-NPnyjbTwI" target="_blank">
-                    <img src="https://i.ytimg.com/vi/t-NPnyjbTwI/mqdefault.jpg" alt="Why Do People Hate YMAX So Much?">
-                    <div class="video-info">
-                        <h3>Why Do People Hate YMAX So Much?</h3>
-                        <div class="channel">Scott Welsh Strategies</div>
-                        <div class="date">5 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=MzrOnFHoIac" target="_blank">
-                    <img src="https://i.ytimg.com/vi/MzrOnFHoIac/mqdefault.jpg" alt="Top 10 False Beliefs About the Market (And 3 Shocking Bonus Myths!)">
-                    <div class="video-info">
-                        <h3>Top 10 False Beliefs About the Market (And 3 Shocking Bonus Myths!)</h3>
-                        <div class="channel">StatOasis | Ali Casey</div>
-                        <div class="date">6 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=63NyVHb0KXc" target="_blank">
-                    <img src="https://i.ytimg.com/vi/63NyVHb0KXc/mqdefault.jpg" alt="How I've Manifested My Desires Lately">
-                    <div class="video-info">
-                        <h3>How I've Manifested My Desires Lately</h3>
-                        <div class="channel">maleeka, is my guardian angel.</div>
-                        <div class="date">6 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=Av7G6amUrpM" target="_blank">
-                    <img src="https://i.ytimg.com/vi/Av7G6amUrpM/mqdefault.jpg" alt="When Should You Seek a Guru?">
-                    <div class="video-info">
-                        <h3>When Should You Seek a Guru?</h3>
-                        <div class="channel">Sadhguru</div>
-                        <div class="date">6 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=yMB7OfJnyE0" target="_blank">
-                    <img src="https://i.ytimg.com/vi/yMB7OfJnyE0/mqdefault.jpg" alt="Eckhart Tolle on the Realization of Being">
-                    <div class="video-info">
-                        <h3>Eckhart Tolle on the Realization of Being</h3>
-                        <div class="channel">Eckhart Tolle</div>
-                        <div class="date">6 days ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=TZ2Tba1uiSk" target="_blank">
-                    <img src="https://i.ytimg.com/vi/TZ2Tba1uiSk/mqdefault.jpg" alt="Shift into the version of you that PRINTS money.">
-                    <div class="video-info">
-                        <h3>Shift into the version of you that PRINTS money.</h3>
-                        <div class="channel">Quazi Johir</div>
-                        <div class="date">1 week ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=C6nd95IGb1c" target="_blank">
-                    <img src="https://i.ytimg.com/vi/C6nd95IGb1c/mqdefault.jpg" alt="Reduce Trading Risks: Diversify Your Strategies Today!">
-                    <div class="video-info">
-                        <h3>Reduce Trading Risks: Diversify Your Strategies Today!</h3>
-                        <div class="channel">Algo Trading With Kevin Davey</div>
-                        <div class="date">1 week ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=AqQpT90t6-w" target="_blank">
-                    <img src="https://i.ytimg.com/vi/AqQpT90t6-w/mqdefault.jpg" alt="The Greatest Mystery, with Eckhart Tolle">
-                    <div class="video-info">
-                        <h3>The Greatest Mystery, with Eckhart Tolle</h3>
-                        <div class="channel">Eckhart Tolle</div>
-                        <div class="date">1 week ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=ZevYSBowYX8" target="_blank">
-                    <img src="https://i.ytimg.com/vi/ZevYSBowYX8/mqdefault.jpg" alt="The Greatest Mystery, with Eckhart Tolle">
-                    <div class="video-info">
-                        <h3>The Greatest Mystery, with Eckhart Tolle</h3>
-                        <div class="channel">Eckhart Tolle</div>
-                        <div class="date">1 week ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=brQs9UcNJnw" target="_blank">
-                    <img src="https://i.ytimg.com/vi/brQs9UcNJnw/mqdefault.jpg" alt="The Truth About Trading: Why Profits Come with Risks">
-                    <div class="video-info">
-                        <h3>The Truth About Trading: Why Profits Come with Risks</h3>
-                        <div class="channel">Algo Trading With Kevin Davey</div>
-                        <div class="date">1 week ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=kW8PI94s-Qk" target="_blank">
-                    <img src="https://i.ytimg.com/vi/kW8PI94s-Qk/mqdefault.jpg" alt="Eckhart Tolle on the Primordial Spiritual Practice">
-                    <div class="video-info">
-                        <h3>Eckhart Tolle on the Primordial Spiritual Practice</h3>
-                        <div class="channel">Eckhart Tolle</div>
-                        <div class="date">1 week ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=lRqdFgxhACI" target="_blank">
-                    <img src="https://i.ytimg.com/vi/lRqdFgxhACI/mqdefault.jpg" alt="Banned 56 min method reveals how to bend reality with mind.">
-                    <div class="video-info">
-                        <h3>Banned 56 min method reveals how to bend reality with mind.</h3>
-                        <div class="channel">Quazi Johir</div>
-                        <div class="date">1 week ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=e0pP0AyIzEo" target="_blank">
-                    <img src="https://i.ytimg.com/vi/e0pP0AyIzEo/mqdefault.jpg" alt="Eckhart Tolle on the Primordial Spiritual Practice">
-                    <div class="video-info">
-                        <h3>Eckhart Tolle on the Primordial Spiritual Practice</h3>
-                        <div class="channel">Eckhart Tolle</div>
-                        <div class="date">1 week ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=N1P0vg6mOtA" target="_blank">
-                    <img src="https://i.ytimg.com/vi/N1P0vg6mOtA/mqdefault.jpg" alt="TRADING Tips to Handle Market Ups & Downs | How to MANAGE Risk- FUTURES TRADING for Beginners!">
-                    <div class="video-info">
-                        <h3>TRADING Tips to Handle Market Ups & Downs | How to MANAGE Risk- FUTURES TRADING for Beginners!</h3>
-                        <div class="channel">Algo Trading With Kevin Davey</div>
-                        <div class="date">1 week ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=OkLDUitmC9g" target="_blank">
-                    <img src="https://i.ytimg.com/vi/OkLDUitmC9g/mqdefault.jpg" alt="7 One-Minute Habits That Save Me 20+ Hours a Week">
-                    <div class="video-info">
-                        <h3>7 One-Minute Habits That Save Me 20+ Hours a Week</h3>
-                        <div class="channel">Clark Kegley</div>
-                        <div class="date">1 week ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=nQTBbCefHAQ" target="_blank">
-                    <img src="https://i.ytimg.com/vi/nQTBbCefHAQ/mqdefault.jpg" alt="Mastering "Real World" Challenge: Speed and Strategy Insights">
-                    <div class="video-info">
-                        <h3>Mastering "Real World" Challenge: Speed and Strategy Insights</h3>
-                        <div class="channel">Algo Trading With Kevin Davey</div>
-                        <div class="date">1 week ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=uP_wygICsPg" target="_blank">
-                    <img src="https://i.ytimg.com/vi/uP_wygICsPg/mqdefault.jpg" alt="Trading Strategy had 100% Win Rate in 2024 - What’s the Secret?">
-                    <div class="video-info">
-                        <h3>Trading Strategy had 100% Win Rate in 2024 - What’s the Secret?</h3>
-                        <div class="channel">The Transparent Trader</div>
-                        <div class="date">1 week ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=-XanAiWikqQ" target="_blank">
-                    <img src="https://i.ytimg.com/vi/-XanAiWikqQ/mqdefault.jpg" alt="Stop Using Standard RSI! 🔥 Discover This Market Rhythm Hack!">
-                    <div class="video-info">
-                        <h3>Stop Using Standard RSI! 🔥 Discover This Market Rhythm Hack!</h3>
-                        <div class="channel">StatOasis | Ali Casey</div>
-                        <div class="date">1 week ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=5yNNWMIXaHc" target="_blank">
-                    <img src="https://i.ytimg.com/vi/5yNNWMIXaHc/mqdefault.jpg" alt="Why We Fail to Manifest Our Desires">
-                    <div class="video-info">
-                        <h3>Why We Fail to Manifest Our Desires</h3>
-                        <div class="channel">maleeka, is my guardian angel.</div>
-                        <div class="date">1 week ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=1w9kgq3v81E" target="_blank">
-                    <img src="https://i.ytimg.com/vi/1w9kgq3v81E/mqdefault.jpg" alt="Faith, Trust, and Silent Power with Eckhart Tolle">
-                    <div class="video-info">
-                        <h3>Faith, Trust, and Silent Power with Eckhart Tolle</h3>
-                        <div class="channel">Eckhart Tolle</div>
-                        <div class="date">1 week ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=2ZAXNVU6cd0" target="_blank">
-                    <img src="https://i.ytimg.com/vi/2ZAXNVU6cd0/mqdefault.jpg" alt="Unlock Trading Success: The Power of Incubation Strategies">
-                    <div class="video-info">
-                        <h3>Unlock Trading Success: The Power of Incubation Strategies</h3>
-                        <div class="channel">Algo Trading With Kevin Davey</div>
-                        <div class="date">1 week ago</div>
-                    </div>
-                </a>
-            </div>
-        
-            <div class="video">
-                <a href="https://www.youtube.com/watch?v=7GHw-ljYxCU" target="_blank">
-                    <img src="https://i.ytimg.com/vi/7GHw-ljYxCU/mqdefault.jpg" alt="Conquering the Toughest Mental Hurdle: Learned Helplessness">
-                    <div class="video-info">
-                        <h3>Conquering the Toughest Mental Hurdle: Learned Helplessness</h3>
-                        <div class="channel">Scott Welsh Strategies</div>
-                        <div class="date">1 week ago</div>
-                    </div>
-                </a>
-            </div>
-        
         </div>
+    
+        <div class="group active" id="all">
+            <div class="grid">
+    
+            </div>
+        </div>
+    
+        <script>
+        function showGroup(groupId) {
+            // Hide all groups
+            document.querySelectorAll('.group').forEach(el => el.classList.remove('active'));
+            // Show selected group
+            document.getElementById(groupId).classList.add('active');
+            // Update button states
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            // Find and activate the clicked button
+            Array.from(document.querySelectorAll('.filter-btn')).find(
+                btn => btn.onclick.toString().includes(groupId)
+            ).classList.add('active');
+        }
+        </script>
     </body>
     </html>
     
