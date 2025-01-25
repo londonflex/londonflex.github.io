@@ -1,0 +1,20 @@
+name: Update YouTube Feed
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Runs every 6 hours
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  update-feed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - run: |
+          pip install feedparser requests beautifulsoup4
+          python generate.py
+      - uses: EndBug/add-and-commit@v7
+        with:
+          message: 'Update feed'
