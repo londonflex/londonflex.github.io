@@ -1,9 +1,12 @@
+[Trading]
 StatOasis
 TheTransparentTrader
 PeakTradingResearch
 AlgoTradingWithKevinDavey
 ScottWelshStrategies
 ImanTrading
+
+[Spiritual]
 Sadhguru
 QuaziJohir
 maleekaismyguardianangel
