@@ -79,9 +79,15 @@ def generate_html(videos_by_group):
                 padding: 16px;
                 display: flex;
                 gap: 8px;
-                flex-wrap: wrap;
+                overflow-x: auto;
+                white-space: nowrap;
                 z-index: 10;
                 border-bottom: 1px solid #2a2a2a;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;  /* Firefox */
+            }
+            .filters::-webkit-scrollbar {
+                display: none;  /* Chrome, Safari, Edge */
             }
             .filter-btn {
                 background: #2a2a2a;
