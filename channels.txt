@@ -8,6 +8,9 @@ ImanTrading
 Darwinexchange
 tradingwithrayner
 ukspreadbetting
+QuantifiedStrategies
+tradingwithrayner
+MindfullyTrading
 
 [Spiritual]
 Sadhguru
@@ -20,6 +23,7 @@ BuddhismInEnglish
 CaptainSinbad
 Einzelgänger
 siebrendevos
+SeatsofContemplation
 
 [Minimalism]
 mattdavella
