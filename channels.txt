@@ -5,8 +5,6 @@ PeakTradingResearch
 AlgoTradingWithKevinDavey
 ScottWelshStrategies
 ImanTrading
-Darwinexchange
-tradingwithrayner
 ukspreadbetting
 QuantifiedStrategies
 ReneBalke
@@ -19,7 +17,6 @@ Sadhguru
 EckhartTolle
 BuddhismInEnglish
 Einzelgänger
-siebrendevos
 SeatsofContemplation
 
 [Minimalism]
@@ -39,12 +36,9 @@ SagutoGolf
 [DontJudgeMe]
 MoreSidemen
 Vikkstar123
-PaolofromTOKYO
 Arthur_Frederick
 ItalianBach
 georgeclarkey
 arthurhill69
 Sidemen
-
-[HarryPereira]
 HarryPereira
